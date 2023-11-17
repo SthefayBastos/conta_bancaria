@@ -1,15 +1,19 @@
 package conta_bancaria;
 
+
+
 import java.util.Scanner;
+
 import conta_bancaria.util.*;
 
 public class Menu {
 
-
-	static Scanner leia = new Scanner (System.in);
-
+	static Scanner leia = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		
+		
+		 
 		int opcao ;
 		
 		
