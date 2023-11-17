@@ -21,30 +21,32 @@ public class Menu {
 			
 			
 			System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
-			                  +"---------------------------------------------");
-			System.out.println("                                             ");
-			System.out.println("                   BANCO X9                  ");
-			System.out.println("                                             ");
-			System.out.println("---------------------------------------------");
-			System.out.println("                                             ");
-			System.out.println("       1 - Criar Conta                       ");
-			System.out.println("       2 - Listar todas as Contas            ");
-			System.out.println("       3 - Buscar conta por Número           ");
-			System.out.println("       4 - Atualizar Dados da conta          ");
-			System.out.println("       5 - Apagar Conta                      ");
-			System.out.println("       6 - Sacar                             ");
-			System.out.println("       7 - Depositar                         ");
-			System.out.println("       8 - Transferir valores entre Contas   ");
-			System.out.println("       9 - Sair                              ");
-			System.out.println("                                             ");
-			System.out.println("---------------------------------------------");
-			System.out.println(" Entre com a opção desejada:                 ");
-			System.out.println("                                             " + Cores.TEXT_RESET);
+			                  +"|---------------------------------------------|");
+			System.out.println("|                                             |");
+			System.out.println("|                   BANCO X9                  |");
+			System.out.println("|                                             |");
+			System.out.println("|---------------------------------------------|");
+			System.out.println("|                                             |");
+			System.out.println("|       1 - Criar Conta                       |");
+			System.out.println("|       2 - Listar todas as Contas            |");
+			System.out.println("|       3 - Buscar conta por Número           |");
+			System.out.println("|       4 - Atualizar Dados da conta          |");
+			System.out.println("|       5 - Apagar Conta                      |");
+			System.out.println("|       6 - Sacar                             |");
+			System.out.println("|       7 - Depositar                         |");
+			System.out.println("|       8 - Transferir valores entre Contas   |");
+			System.out.println("|       9 - Sair                              |");
+			System.out.println("|                                             |");
+			System.out.println("|---------------------------------------------|");
+			System.out.println("| Entre com a opção desejada:                 |");
+			System.out.println("|                                             |" + Cores.TEXT_RESET);
 
 			opcao = leia.nextInt();
 			
 			if (opcao == 9) {
-					System.out.println("\n Banco X9 - Sua vida financeira em destaque!");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
+		                  +"|---------------------------------------------------------|");	
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "| Banco X9 - Sua vida financeira em destaque!             |");
 					sobre();
 			leia.close();
 					System.exit(0);
@@ -80,10 +82,12 @@ public class Menu {
 		}
 	}
 	public static void sobre() {
-		System.out.println("\n-------------------------------------------------------");
-		System.out.println("Projeto Desenvolvido por: Sthefany Sousa                 ");
-		System.out.println("Sthefany Sousa -  sthefanysousageneration@gmail.com      ");
-		System.out.println("https://github.com/SthefayBastos "                        );
-		System.out.println("---------------------------------------------------------");
+		
+		System.out.println  (Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
+		                  +"|---------------------------------------------------------|");
+		System.out.println("|Projeto Desenvolvido por: Sthefany Sousa                 |");
+		System.out.println("|Sthefany Sousa -  sthefanysousageneration@gmail.com      |");
+		System.out.println("|https://github.com/SthefayBastos                         |");
+		System.out.println("|---------------------------------------------------------|");
 	}
 }
