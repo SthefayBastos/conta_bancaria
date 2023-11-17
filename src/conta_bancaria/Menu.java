@@ -4,7 +4,8 @@ package conta_bancaria;
 
 import java.util.Scanner;
 
-import conta_bancaria.util.*;
+import conta_bancaria.model.Conta;
+import conta_bancaria.util.Cores;
 
 public class Menu {
 
@@ -12,8 +13,16 @@ public class Menu {
 	
 	public static void main(String[] args) {
 		
+		//Criar objetos da classe conta para testes
 		
-		 
+		Conta c1 = new Conta(1 , 123 , 1 ,"Victória Moraes" ,10000.0f);
+		c1.visualizar();
+		c1.sacar(12000.0f);
+		c1.visualizar();
+		c1.depositar(5000.0f);
+		c1.visualizar();
+		
+		
 		int opcao ;
 		
 		
@@ -65,7 +74,7 @@ public class Menu {
 				System.out.println( "Atualizar dados da Conta ");
 			
 			case 5 ->
-				System.out.println( "Apagar a Conta\n\n");
+				System.out.println( "Apagar a Conta.\n\n");
 				
 			case 6 ->
 				System.out.println( "Saque\n");
