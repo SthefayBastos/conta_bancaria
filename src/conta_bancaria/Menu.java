@@ -5,6 +5,7 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -21,6 +22,11 @@ public class Menu {
 		c1.visualizar();
 		c1.depositar(5000.0f);
 		c1.visualizar();
+		
+		ContaCorrente cc1 =  new ContaCorrente(3 ,456, 1, "Janiel", 100000.00f, 2000.00f);
+		cc1.visualizar();
+		cc1.sacar(101000.00f);
+		cc1.visualizar();
 		
 		
 		int opcao ;

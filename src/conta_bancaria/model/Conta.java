@@ -97,7 +97,7 @@ public class Conta {
 			
 		}
 				
-		System.out.println("\n\n*****************************************");
+		System.out.println("\n\n*******************************************");
 		 System.out.println("Dados da Conta");
 		 System.out.println("*********************************************");
 		 System.out.println("Número da Conta: " + this.numero);
