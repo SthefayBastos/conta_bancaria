@@ -1,5 +1,7 @@
 package conta_bancaria;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import conta_bancaria.controller.ContaController;
@@ -41,8 +43,13 @@ public class Menu {
 			System.out.println("| Entre com a opção desejada:                 |");
 			System.out.println("|---------------------------------------------|" + Cores.TEXT_RESET);
 
-			opcao = leia.nextInt();
-
+			try {
+				opcao = leia.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Digite valores inteiros!");
+				leia.nextLine();
+				opcao = 0;
+			}
 			if (opcao == 9) {
 				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
 						+ "|---------------------------------------------------------|");
@@ -54,8 +61,7 @@ public class Menu {
 			}
 			switch (opcao) {
 			case 1 -> {
-				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+
-						"Criar conta\n\n");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "Criar conta\n\n");
 				System.out.println("Digite o número da agência: ");
 				agencia = leia.nextInt();
 
@@ -63,7 +69,9 @@ public class Menu {
 				leia.skip("\\R");
 				titular = leia.nextLine();
 
-				System.out.println("Digite o tipo de Conta ( 1 - CC ou 2 - CP) ");
+				System.out.println("Digite o tipo de Conta: ");
+				System.out.println(" 1 - Conta Corrente");
+				System.out.println(" 2 - Conta Poupança");
 				tipo = leia.nextInt();
 
 				System.out.println("Digite o depósito inicial da Conta: ");
@@ -81,34 +89,59 @@ public class Menu {
 					contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniver));
 				}
 				}
+				keyPress();
 			}
-			
+
 			case 2 -> {
 				System.out.println("Listar todas as Contas\n\n");
-			
+
 				contas.listarTodas();
+				keyPress();
 			}
-				
-			case 3 -> 
-			{
-			
+
+			case 3 -> {
+
 				System.out.println("Consultar dados da Conta -  por número\n\n");
-			
-				
+
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
+
+				contas.procurarPorNum(numero);
+
+				keyPress();
 			}
-			
-			
-			case 4 -> System.out.println("Atualizar dados da Conta ");
 
-			case 5 -> System.out.println("Apagar a Conta.\n\n");
+			case 4 -> {
+				System.out.println("Atualizar dados da Conta ");
+				keyPress();
+			}
+			case 5 -> {
+				System.out.println("Apagar a Conta.\n\n");
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
 
-			case 6 -> System.out.println("Saque\n");
+				contas.delete(numero);
+				keyPress();
+			}
+			case 6 -> {
+				System.out.println("Saque\n");
+				keyPress();
+			}
 
-			case 7 -> System.out.println("Depóstito\n");
+			case 7 -> {
+				System.out.println("Depóstito\n");
+				keyPress();
+			}
 
-			case 8 -> System.out.println("Transferência entre Contas\n\n");
+			case 8 -> {
+				System.out.println("Transferência entre Contas\n\n");
+				keyPress();
+			}
 
-			default -> System.out.println("\n Opção Inválida!\n\n"+ Cores.TEXT_RESET);
+			default -> {
+				System.out.println("\n Opção Inválida!\n\n" + Cores.TEXT_RESET);
+				keyPress();
+			}
 			}
 		}
 	}
@@ -122,4 +155,17 @@ public class Menu {
 		System.out.println("|https://github.com/SthefayBastos                         |");
 		System.out.println("|---------------------------------------------------------|");
 	}
+
+	public static void keyPress() {
+		try {
+
+			System.out.println("Precione a tecla ENTER para continuar");
+			System.in.read();
+
+		} catch (IOException e) {
+			System.out.println("Voce pressionou uma tecla inválida!");
+		}
+
+	}
+
 }
