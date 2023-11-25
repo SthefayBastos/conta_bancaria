@@ -18,9 +18,9 @@ public class Menu {
 	public static void main(String[] args) {
 
 		ContaController contas = new ContaController();
-		int opcao, numero, agencia, tipo, aniver;
+		int opcao, numero, agencia, tipo, aniver, numeroDestino;
 		String titular = "";
-		float saldo, limite;
+		float saldo, limite,valor;
 
 		while (true) {
 
@@ -121,7 +121,7 @@ public class Menu {
 
 				Optional<Conta> conta = contas.buscarNaCollection(numero);
 				if (contas.buscarNaCollection(numero).isPresent()) {
-					System.out.println("Digite o número da agência: ");
+					System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da agência: ");
 					agencia = leia.nextInt();
 
 					System.out.println("Digite seu nome: ");
@@ -140,7 +140,7 @@ public class Menu {
 						contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
 					}
 					case 2 -> {
-						System.out.println("Digite o aniversário de rendimento da conta: ");
+						System.out.println("Digite o aniversário de rendimento da conta: "+ Cores.TEXT_RESET);
 						aniver = leia.nextInt();
 						contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniver));
 
@@ -148,30 +148,59 @@ public class Menu {
 
 					}
 				} else
-					System.out.println("A conta " + numero + " não foi encontrada!");
+					System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"A conta " + numero + " não foi encontrada!");
 
 				keyPress();
 			}
 			case 5 -> {
-				System.out.println("Apagar a Conta.\n\n");
-				System.out.println("Digite o número da conta: ");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Apagar a Conta.\n\n");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da conta: ");
 				numero = leia.nextInt();
 
 				contas.delete(numero);
 				keyPress();
 			}
 			case 6 -> {
-				System.out.println("Saque\n");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Saque\n");
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da conta: ");
+				numero = leia.nextInt();
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o valor do saque: ");
+				valor = leia.nextFloat();
+				
+				contas.sacar(numero, valor);
 				keyPress();
 			}
 
 			case 7 -> {
-				System.out.println("Depóstito\n");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Depóstito\n");
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Saque\n");
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da conta: ");
+				numero = leia.nextInt();
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o valor do depósito: ");
+				valor = leia.nextFloat();
+				
+				contas.depositar(numero, valor);
 				keyPress();
 			}
 
 			case 8 -> {
-				System.out.println("Transferência entre Contas\n\n");
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Transferência entre Contas\n\n");
+
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da Conta Origem: ");
+				numero = leia.nextInt();
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o número da Conta Destino: ");
+				numeroDestino = leia.nextInt();
+				
+				System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Digite o valor da transfência: ");
+				valor = leia.nextFloat();
+				
+				contas.transferir (numero, numeroDestino, valor);
 				keyPress();
 			}
 
@@ -196,11 +225,11 @@ public class Menu {
 	public static void keyPress() {
 		try {
 
-			System.out.println("Precione a tecla ENTER para continuar");
+			System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND+"Precione a tecla ENTER para continuar");
 			System.in.read();
 
 		} catch (IOException e) {
-			System.out.println("Voce pressionou uma tecla inválida!");
+			System.out.println("Voce pressionou uma tecla inválida!" + Cores.TEXT_RESET);
 		}
 
 	}
