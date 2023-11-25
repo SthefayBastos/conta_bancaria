@@ -1,5 +1,7 @@
 package conta_bancaria.model;
 
+import conta_bancaria.util.Cores;
+
 public abstract class Conta {
 
 	//Definição dos Atributos da Classe
@@ -97,14 +99,14 @@ public abstract class Conta {
 			
 		}
 				
-		System.out.println("\n\n*******************************************");
+		System.out.println(Cores.TEXT_BLUE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND +"\n\n*********************************************");
 		 System.out.println("Dados da Conta");
 		 System.out.println("*********************************************");
 		 System.out.println("Número da Conta: " + this.numero);
 		 System.out.println("Agência: " + this.agencia);
 		 System.out.println("Tipo da Conta: " + tipo);
 		 System.out.println("Titular da Conta: " + this.titular);
-		 System.out.println("Saldo da conta: " + this.saldo);
+		 System.out.println("Saldo da conta: " + this.saldo + Cores.TEXT_RESET);
 
 
 	 }

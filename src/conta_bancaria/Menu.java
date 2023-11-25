@@ -2,9 +2,11 @@ package conta_bancaria;
 
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 import conta_bancaria.controller.ContaController;
+import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
@@ -113,6 +115,41 @@ public class Menu {
 
 			case 4 -> {
 				System.out.println("Atualizar dados da Conta ");
+
+				System.out.println("Digite o número da conta: ");
+				numero = leia.nextInt();
+
+				Optional<Conta> conta = contas.buscarNaCollection(numero);
+				if (contas.buscarNaCollection(numero).isPresent()) {
+					System.out.println("Digite o número da agência: ");
+					agencia = leia.nextInt();
+
+					System.out.println("Digite seu nome: ");
+					leia.skip("\\R");
+					titular = leia.nextLine();
+
+					tipo = conta.get().getTipo();
+
+					System.out.println("Digite o depósito inicial da Conta: ");
+					saldo = leia.nextFloat();
+
+					switch (tipo) {
+					case 1 -> {
+						System.out.println("Digite o limite aprovado para a conta: ");
+						limite = leia.nextFloat();
+						contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+					}
+					case 2 -> {
+						System.out.println("Digite o aniversário de rendimento da conta: ");
+						aniver = leia.nextInt();
+						contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniver));
+
+					}
+
+					}
+				} else
+					System.out.println("A conta " + numero + " não foi encontrada!");
+
 				keyPress();
 			}
 			case 5 -> {
@@ -139,7 +176,7 @@ public class Menu {
 			}
 
 			default -> {
-				System.out.println("\n Opção Inválida!\n\n" + Cores.TEXT_RESET);
+				System.out.println(Cores.TEXT_RED_BOLD +"\n Opção Inválida!\n\n" + Cores.TEXT_RESET);
 				keyPress();
 			}
 			}
